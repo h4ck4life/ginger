@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"scrape/ginger/controllers"
 	"scrape/ginger/models"
 
@@ -26,7 +27,7 @@ func main() {
 
 	r.GET("/quotes", controllers.FindQuotes)
 
-	err := r.Run()
+	err := r.Run(":" + os.Getenv("PORT"))
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return
