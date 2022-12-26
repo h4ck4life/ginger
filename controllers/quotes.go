@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 	"scrape/ginger/models"
+	"scrape/ginger/services"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,7 +13,8 @@ import (
 func FindQuotes(c *gin.Context) {
 	var quote models.QUOTE
 
-	if err := models.DB.Order("RANDOM()").First(&quote).Error; err != nil {
+	err := services.GetOneRandomQuote(&quote)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
