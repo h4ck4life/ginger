@@ -19,7 +19,9 @@ func main() {
 		c.Header("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
 	})
 
-	models.ConnectDatabase()
+	r.NoRoute(func(c *gin.Context) {
+		c.JSON(404, gin.H{"code": "PAGE_NOT_FOUND", "message": "Page not found"})
+	})
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
@@ -30,6 +32,8 @@ func main() {
 	})
 
 	r.GET("/random", controllers.FindQuotes)
+
+	models.ConnectDatabase()
 
 	err := r.Run(":" + os.Getenv("PORT"))
 	if err != nil {
