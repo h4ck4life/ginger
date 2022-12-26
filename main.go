@@ -25,7 +25,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"data": "go /quotes to get a random quote"})
 	})
 
-	r.GET("/quotes", controllers.FindQuotes)
+	r.GET("/random", controllers.FindQuotes)
 
 	err := r.Run(":" + os.Getenv("PORT"))
 	if err != nil {
