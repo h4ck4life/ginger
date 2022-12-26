@@ -11,6 +11,9 @@ import (
 )
 
 func main() {
+
+	models.ConnectDatabase()
+
 	r := gin.Default()
 
 	// CORS middleware to allow all origins
@@ -32,8 +35,6 @@ func main() {
 	})
 
 	r.GET("/random", controllers.FindQuotes)
-
-	models.ConnectDatabase()
 
 	err := r.Run(":" + os.Getenv("PORT"))
 	if err != nil {
