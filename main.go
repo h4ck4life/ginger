@@ -25,7 +25,7 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"data":   "get /random quote from over 499,500 records",
+			"data":   "Get /random quote",
 			"source": "https://github.com/h4ck4life/ginger",
 			"author": "@h4ck4life",
 		})
