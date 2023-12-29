@@ -18,5 +18,5 @@ docker build -t quotes-app .
 
 ### Run the container
 ```bash
-docker run -it -p 8080:8080 -v .:/app -d quotes-app
+docker run -it -p 8080:8080 -v $(pwd):/app quotes-app
 ```
