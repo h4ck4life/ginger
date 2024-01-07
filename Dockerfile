@@ -22,6 +22,7 @@ FROM scratch
 
 COPY --from=build /go/bin/main /usr/local/bin/main
 
+ENV GIN_MODE=release
 ENV PORT=8080
 
 WORKDIR /app
