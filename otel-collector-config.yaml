@@ -1,0 +1,30 @@
+exporters:
+  # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/zipkinexporter
+  zipkin:
+    endpoint: 'http://zipkin-collector:9411/api/v2/spans'
+  logging:
+    verbosity: detailed # This will provide more logging to see what the collector actually receives
+
+receivers:
+  otlp:
+    protocols:
+      #grpc:
+      http:
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: # Add processors if needed
+      exporters: [zipkin]
+
+    # You can define more pipelines if needed
+    # metrics:
+    #   receivers: [otlp]
+    #   processors:
+    #   exporters: [your_exporter]
+
+    # logs:
+    #   receivers: [your_receiver]
+    #   processors:
+    #   exporters: [your_exporter]

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/uptrace/opentelemetry-go-extra/otelgorm"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -23,4 +24,7 @@ func ConnectDatabase() {
 	*/
 
 	DB = database
+	if err := database.Use(otelgorm.NewPlugin()); err != nil {
+		panic(err)
+	}
 }

@@ -16,7 +16,8 @@ COPY . /workspace/
 
 RUN \
     go mod tidy && \
-    go install -ldflags='-s -w -extldflags "-static"' ./main.go
+    go install -ldflags='-extldflags "-static"' ./main.go
+# go install ./main.go
 
 FROM scratch
 
