@@ -42,8 +42,9 @@ func ConnectDatabase() {
 		}
 	*/
 
-	DB = database
 	if err := database.Use(otelgorm.NewPlugin()); err != nil {
 		panic(err)
 	}
+
+	DB = database
 }
