@@ -1,8 +1,12 @@
 package services
 
-import "scrape/ginger/models"
+import (
+	"context"
 
-func GetOneRandomQuote(quote *models.QUOTE) error {
-	err := models.DB.Order("RANDOM()").First(&quote).Error
+	"scrape/ginger/models"
+)
+
+func GetOneRandomQuote(ctx context.Context, quote *models.QUOTE) error {
+	err := models.DB.WithContext(ctx).Order("RANDOM()").First(&quote).Error
 	return err
 }

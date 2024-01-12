@@ -11,9 +11,10 @@ import (
 // GET /quotes
 // Get random quotes
 func FindQuotes(c *gin.Context) {
+	ctx := c.Request.Context()
 	var quote models.QUOTE
 
-	err := services.GetOneRandomQuote(&quote)
+	err := services.GetOneRandomQuote(ctx, &quote)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
