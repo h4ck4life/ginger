@@ -18,5 +18,5 @@ docker build -t quotes-app .
 
 ### Run the container
 ```bash
-docker run -it -p 8080:8080 -v $(pwd):/app quotes-app
+docker run --env-file=.env -it -p 8080:8080 -v $(pwd)/quotes_v1.sqlite:/app/quotes_v1.sqlite quotes-app
 ```

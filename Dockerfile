@@ -23,8 +23,6 @@ FROM scratch
 
 COPY --from=build /go/bin/main /usr/local/bin/main
 
-ENV PORT=8080
-
 WORKDIR /app
 
 ENTRYPOINT [ "/usr/local/bin/main" ]
