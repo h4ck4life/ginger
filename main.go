@@ -60,15 +60,18 @@ func initTracer() func(context.Context) error {
 	return exporter.Shutdown
 }
 
-func main() {
+func init() {
+	// Create the database instance
+	models.ConnectDatabase()
+}
 
+func main() {
+	// Initialize the tracing exporter
 	cleanup := initTracer()
 	defer cleanup(context.Background())
 
 	r := gin.Default()
 	r.Use(otelgin.Middleware(serviceName))
-
-	models.ConnectDatabase()
 
 	// CORS middleware to allow all origins
 	r.Use(func(c *gin.Context) {
